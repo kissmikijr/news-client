@@ -35,6 +35,7 @@ const NewsCard = (props) => {
         <NewsTitle>{props.news.title}</NewsTitle>
       </Flex>
       <Description>{props.news.description}</Description>
+      <Description>{props.news.publishedAt}</Description>
     </NewsCardContainer>
   );
 };
@@ -52,7 +53,7 @@ const iFrameModalStyle = {
 };
 const NewsCardContainer = styled.div`
   border: 1px solid rgb(204, 204, 204);
-  width: 720px;
+  width: 1005;
   margin: auto;
   margin-bottom: 50px;
 `;
