@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
+import { Paper } from "@material-ui/core";
 
 const NewsCard = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,12 +13,7 @@ const NewsCard = (props) => {
   };
   return (
     <NewsCardContainer>
-      <img
-        onClick={openModal}
-        src={props.news.urlToImage}
-        alt="yikes"
-        width="720"
-      />
+      <Thumbnail onClick={openModal} src={props.news.urlToImage} alt="yikes" />
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
@@ -51,11 +47,18 @@ const iFrameModalStyle = {
     transform: "translate(-50%, -50%)",
   },
 };
+const Thumbnail = styled.img`
+  width: 720px;
+  cursor: pointer;
+`;
 const NewsCardContainer = styled.div`
   border: 1px solid rgb(204, 204, 204);
   width: 1005;
   margin: auto;
   margin-bottom: 50px;
+  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
+    0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
 `;
 
 const NewsTitle = styled.div`
