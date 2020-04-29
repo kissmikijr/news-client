@@ -7,26 +7,31 @@ import axios from "axios";
 const NewsFeed = () => {
   const [selected, setSelected] = useState("headlines");
   const [news, setNews] = useState([]);
+  const [listening, setListening] = useState(false);
 
   useEffect(() => {
     const getNews = async () => {
       if (selected === "headlines") {
-        var result = await axios.get(
-          "https://neeews.herokuapp.com/api/news/headlines",
-          { params: { country: "hu" } }
-        );
-        setNews(result.data.data.headlines);
+        if (!listening) {
+          const events = new EventSource(
+            "https://neeews.herokuapp.com/api/news/headlines?country=hu"
+          );
+          events.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            setNews(data.headlines);
+          };
+          setListening(true);
+        }
       } else if (selected === "everything") {
-        result = await axios.get(
+        const result = await axios.get(
           "https://neeews.herokuapp.com/api/news/everything",
           { params: { domains: "index.hu,origo.hu" } }
         );
         setNews(result.data.data["index.hu"].everything);
       }
-      console.log(result);
     };
     getNews();
-  }, [selected]);
+  }, [selected, listening]);
 
   const getSelected = (selected) => {
     setSelected(selected);
