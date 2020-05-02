@@ -12,22 +12,24 @@ const NewsFeed = () => {
   useEffect(() => {
     const getNews = async () => {
       if (selected === "headlines") {
-        if (!listening) {
-          const events = new EventSource(
-            "https://neeews.herokuapp.com/api/news/headlines?country=hu"
-          );
-          events.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            setNews(data.headlines);
-          };
-          setListening(true);
-        }
-      } else if (selected === "everything") {
-        const result = await axios.get(
-          "https://neeews.herokuapp.com/api/news/everything",
-          { params: { domains: "index.hu,origo.hu" } }
+        const events = new EventSource(
+          "https://neeews.herokuapp.com/api/news/headlines?country=hu"
         );
-        setNews(result.data.data["index.hu"].everything);
+        events.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          setNews(data.headlines);
+        };
+        setListening(true);
+      } else if (selected === "everything") {
+        const events = new EventSource(
+          "https://neeews.herokuapp.com/api/news/everything?domains=index.hu,origo.hu"
+        );
+        events.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          console.log(data);
+          setNews(data["index.hu"].everything);
+        };
+        setListening(true);
       }
     };
     getNews();
