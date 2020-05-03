@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { defaults } from "./styles/constants";
 
 const MENU_ITEMS = [
   { displayName: "Headlines", url: "headlines" },
@@ -30,6 +31,9 @@ const Flex = styled.div`
   min-height: 100px;
   margin-bottom: 15px;
   border-bottom: 1px solid grey;
+  position: sticky;
+  top: ${defaults.navBarHeight};
+  background-color: white;
 `;
 const MenuItem = styled.div`
   font-weight: 450;

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import NewsCard from "./news-card";
 
-const scrollToRef = (ref) => {
-  if (!ref || !ref.current) return;
-  window.scrollTo({ left: 0, top: ref.current.offsetTop, behavior: "smooth" });
+const scrollToRef = (nextRef) => {
+  if (!nextRef || !nextRef.current) return;
+  window.scrollTo({
+    left: 0,
+    top: nextRef.current.offsetTop - 190,
+    behavior: "smooth",
+  });
 };
 
 const NewsFeedContent = (props) => {

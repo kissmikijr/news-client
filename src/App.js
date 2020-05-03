@@ -1,14 +1,19 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import NewsFeed from "./news-feed";
+import Navbar from "./navbar";
+import styled from "styled-components";
 
 function App() {
   return (
-    <div className="App">
+    <Flex className="App">
+      <Navbar />
       <NewsFeed />
-    </div>
+    </Flex>
   );
 }
 
+const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export default App;
