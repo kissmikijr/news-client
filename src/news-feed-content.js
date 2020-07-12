@@ -13,6 +13,7 @@ const scrollToRef = (nextRef) => {
 const NewsFeedContent = (props) => {
   const [refs, setRefs] = useState([]);
   let currentRef = 0;
+  console.log(props.news, "newsfeedcontent");
 
   useEffect(() => {
     const refs = props.news.map(() => React.createRef());

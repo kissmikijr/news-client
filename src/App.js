@@ -1,13 +1,13 @@
 import React from "react";
-import NewsFeed from "./news-feed";
 import Navbar from "./navbar";
 import styled from "styled-components";
+import SSEWrapper from "./sse-wrapper";
 
 function App() {
   return (
     <Flex className="App">
       <Navbar />
-      <NewsFeed />
+      <SSEWrapper />
     </Flex>
   );
 }

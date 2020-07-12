@@ -17,6 +17,7 @@ const NewsFeedController = (props) => {
   const sendCountry = () => {
     this.props.sendCountry(country);
   };
+
   return (
     <Flex>
       {MENU_ITEMS.map((item) => (
