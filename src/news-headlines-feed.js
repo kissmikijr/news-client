@@ -8,17 +8,12 @@ const NewsHeadlinesFeed = () => {
   const message = useSSE("message", []);
 
   return message && message.length > 0 ? (
-    <NewsContainer>
+    <div className="">
       <NewsFeedContent news={message} />
-    </NewsContainer>
+    </div>
   ) : (
     <div> Waitng for messages</div>
   );
 };
-const NewsContainer = styled.div`
-  width: 720px;
-  margin-top: ${defaults.navBarHeight};
-  margin: auto;
-`;
 
 export default NewsHeadlinesFeed;

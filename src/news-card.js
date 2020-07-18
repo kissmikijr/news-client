@@ -12,6 +12,10 @@ const NewsCard = (props) => {
   };
   return (
     <NewsCardContainer>
+      <div className="h-16 min-h-full">
+        <div className="opacity-75 text-xs mb-2">{props.news.source.name}</div>
+        <NewsTitle>{props.news.title}</NewsTitle>
+      </div>
       <Thumbnail onClick={openModal} src={props.news.urlToImage} alt="yikes" />
       <Modal
         isOpen={isOpen}
@@ -25,19 +29,18 @@ const NewsCard = (props) => {
           width="100%"
         ></iframe>
       </Modal>
-      <Flex>
-        <div>{props.news.source.name}</div>
-        <NewsTitle>{props.news.title}</NewsTitle>
-      </Flex>
-      <Description>{props.news.description}</Description>
-      <Description>{props.news.publishedAt}</Description>
+
+      <div className="text-left mb-2">{props.news.description}</div>
+      <div className="text-left text-xs opacity-75">
+        {props.news.publishedAt}
+      </div>
     </NewsCardContainer>
   );
 };
 const iFrameModalStyle = {
   content: {
     height: "100vh",
-    width: "50%",
+    width: "95%",
     top: "50%",
     left: "50%",
     right: "auto",
@@ -47,7 +50,6 @@ const iFrameModalStyle = {
   },
 };
 const Thumbnail = styled.img`
-  width: 720px;
   cursor: pointer;
 `;
 const NewsCardContainer = styled.div`
@@ -63,10 +65,6 @@ const NewsCardContainer = styled.div`
 const NewsTitle = styled.div`
   font-weight: bold;
   margin-left: auto;
-`;
-
-const Flex = styled.div`
-  display: flex;
 `;
 
 const Description = styled.div`
