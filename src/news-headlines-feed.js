@@ -1,7 +1,5 @@
 import React from "react";
 import NewsFeedContent from "./news-feed-content";
-import styled from "styled-components";
-import { defaults } from "./styles/constants";
 import { useSSE } from "react-hooks-sse";
 
 const NewsHeadlinesFeed = () => {

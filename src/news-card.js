@@ -67,7 +67,4 @@ const NewsTitle = styled.div`
   margin-left: auto;
 `;
 
-const Description = styled.div`
-  text-align: left;
-`;
 export default NewsCard;

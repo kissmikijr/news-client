@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const MENU_ITEMS = [
@@ -6,21 +6,10 @@ const MENU_ITEMS = [
   { displayName: "Everything", url: "everything" },
 ];
 const NewsFeedController = (props) => {
-  const [country, setCountry] = useState("");
-  const [selected, setSelected] = useState({});
-
-  const handleMenu = (item) => {
-    props.sendSelected(item.url);
-    setSelected(item);
-  };
-  const sendCountry = () => {
-    this.props.sendCountry(country);
-  };
-
   return (
     <div className="">
       {MENU_ITEMS.map((item) => (
-        <MenuItem onClick={() => handleMenu(item)}>{item.displayName}</MenuItem>
+        <MenuItem>{item.displayName}</MenuItem>
       ))}
     </div>
   );
