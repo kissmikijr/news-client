@@ -6,7 +6,12 @@ const Navbar = () => {
   return (
     <Wrapper>
       <Base>
-        <Title>Neeews!</Title>
+        <div className="flex items-center">
+          <Title>Neeews!</Title>
+          <div className="text-white text-opacity-50 text-xs ml-2">
+            powered by NewsAPI
+          </div>
+        </div>
       </Base>
     </Wrapper>
   );
