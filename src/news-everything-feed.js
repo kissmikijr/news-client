@@ -12,7 +12,6 @@ const NewsEverythingFeed = (props) => {
     );
 
     evtSource.onmessage = (event) => {
-      console.log(event.data, "@@");
       setFeed(JSON.parse(event.data));
     };
   }, [props.country]);

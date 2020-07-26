@@ -12,7 +12,7 @@ const NewsCard = (props) => {
   };
   return (
     <NewsCardContainer>
-      <div className="h-16 min-h-full">
+      <div className="mb-4 min-h-full">
         <div className="opacity-75 text-xs mb-2">{props.news.source.name}</div>
         <NewsTitle>{props.news.title}</NewsTitle>
       </div>

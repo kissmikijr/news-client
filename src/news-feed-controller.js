@@ -6,11 +6,13 @@ const MENU_ITEMS = [
   { displayName: "Headlines", url: "/headlines", default: true },
   { displayName: "Everything", url: "/everything" },
 ];
-const NewsFeedController = () => {
+const NewsFeedController = (props) => {
   return (
     <div className="">
       {MENU_ITEMS.map((item) => (
-        <MenuItem {...item}>{item.displayName}</MenuItem>
+        <MenuItem {...item} {...props} key={item.url}>
+          {item.displayName}
+        </MenuItem>
       ))}
     </div>
   );
@@ -23,7 +25,7 @@ const MenuItem = (props) => {
       key={props.url}
       onClick={() => {
         setToggled((s) => !s);
-        history.push(props.url);
+        history.push(`${props.url}/${props.country}`);
       }}
       className={`${toggled ? "bg-red-600" : ""}`}
     >
