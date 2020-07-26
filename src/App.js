@@ -1,13 +1,16 @@
 import React from "react";
 import Navbar from "./navbar";
 import styled from "styled-components";
-import SSEWrapper from "./sse-wrapper";
+import Content from "./content";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
     <Flex className="App">
-      <Navbar />
-      <SSEWrapper />
+      <Router>
+        <Navbar />
+        <Content />
+      </Router>
     </Flex>
   );
 }

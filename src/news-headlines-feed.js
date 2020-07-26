@@ -1,16 +1,31 @@
 import React from "react";
 import NewsFeedContent from "./news-feed-content";
-import { useSSE } from "react-hooks-sse";
+import { useEffect, useState } from "react";
 
-const NewsHeadlinesFeed = () => {
-  const message = useSSE("message", []);
+const BASE_URI = "https://neeews.herokuapp.com/api/news";
 
-  return message && message.length > 0 ? (
+const NewsHeadlinesFeed = (props) => {
+  const [feed, setFeed] = useState([]);
+
+  useEffect(() => {
+    const evtSource = new EventSource(
+      `${BASE_URI}/headlines?country=${props.country}`
+    );
+
+    evtSource.onmessage = (event) => {
+      setFeed(JSON.parse(event.data));
+    };
+    return () => {
+      evtSource.close();
+    };
+  }, [props.country]);
+
+  return feed && feed.length > 0 ? (
     <div className="">
-      <NewsFeedContent news={message} />
+      <NewsFeedContent news={feed} />
     </div>
   ) : (
-    <div> Waitng for messages</div>
+    <div> Waiting for neeews!</div>
   );
 };
 

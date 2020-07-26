@@ -1,24 +1,28 @@
 import React from "react";
 import NewsFeedContent from "./news-feed-content";
-import styled from "styled-components";
-import { defaults } from "./styles/constants";
-import { useSSE } from "react-hooks-sse";
+import { useEffect, useState } from "react";
 
-const NewsEverythingFeed = () => {
-  const message = useSSE("message", []);
+const BASE_URI = "https://neeews.herokuapp.com/api/news";
+const NewsEverythingFeed = (props) => {
+  const [feed, setFeed] = useState([]);
 
-  return message && message.length > 0 ? (
-    <NewsContainer>
-      <NewsFeedContent news={message} />
-    </NewsContainer>
+  useEffect(() => {
+    const evtSource = new EventSource(
+      `${BASE_URI}/headlines?country=${props.country}`
+    );
+
+    evtSource.onmessage = (event) => {
+      console.log(event.data, "@@");
+      setFeed(JSON.parse(event.data));
+    };
+  }, [props.country]);
+
+  return feed && feed.length > 0 ? (
+    <div className="">
+      <NewsFeedContent news={feed} />
+    </div>
   ) : (
-    <div> Waitng for messages</div>
+    <div> Waiting for messages</div>
   );
 };
-const NewsContainer = styled.div`
-  width: 720px;
-  margin-top: ${defaults.navBarHeight};
-  margin: auto;
-`;
-
 export default NewsEverythingFeed;
