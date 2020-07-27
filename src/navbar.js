@@ -1,34 +1,21 @@
 import React from "react";
-import styled from "styled-components";
-import { colors, defaults } from "./styles/constants";
 
 const Navbar = () => {
   return (
-    <Wrapper>
-      <Base>
-        <div className="flex items-center">
-          <Title>Neeews!</Title>
+    <div className="mb-12 z-50">
+      <div className=" w-full fixed flex bg-black h-12 ">
+        <div className="flex items-center mx-auto container w-full">
+          <div className="text-white text-2xl">Neeews!</div>
           <div className="text-white text-opacity-50 text-xs ml-2">
             powered by NewsAPI
           </div>
         </div>
-      </Base>
-    </Wrapper>
+        <div>
+          <div>...</div>
+        </div>
+      </div>
+    </div>
   );
 };
-const Wrapper = styled.div`
-  margin-bottom: ${defaults.navBarHeight};
-`;
-const Base = styled.div`
-  background-color: ${colors.mainColor};
-  height: ${defaults.navBarHeight};
-  width: 100%;
-  position: fixed;
-  display: flex;
-  align-items: center;
-`;
-const Title = styled.div`
-  color: white;
-  font-size: 25px;
-`;
+
 export default Navbar;

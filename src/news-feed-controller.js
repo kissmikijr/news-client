@@ -8,7 +8,7 @@ const MENU_ITEMS = [
 ];
 const NewsFeedController = (props) => {
   return (
-    <div className="">
+    <div className="flex md:block">
       {MENU_ITEMS.map((item) => (
         <MenuItem {...item} {...props} key={item.url}>
           {item.displayName}
@@ -27,21 +27,18 @@ const MenuItem = (props) => {
         setToggled((s) => !s);
         history.push(`${props.url}/${props.country}`);
       }}
-      className={`${toggled ? "bg-red-600" : ""}`}
+      className={`${
+        toggled ? "bg-gray-400 font-medium" : ""
+      } hover:bg-gray-300 w-full`}
     >
       {props.children}
     </StyledMenuItem>
   );
 };
 const StyledMenuItem = styled.div`
-  font-weight: 450;
   font-size: 1.2rem;
   margin-right: 10px;
   padding-bottom: 10px;
   cursor: pointer;
-  &:hover {
-    color: blue;
-    border-bottom: 1px solid blue;
-  }
 `;
 export default NewsFeedController;

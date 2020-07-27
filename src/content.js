@@ -13,11 +13,11 @@ export default function Content() {
   };
   return (
     <div className="mx-auto flex">
-      <div className="fixed">
+      <div className="fixed w-48 hidden  md:block">
         <NewsFeedController country={country} />
         <CountrySelector handleCountryChange={handleCountryChange} />
       </div>
-      <div className="post-container ml-48">
+      <div className="post-container md:ml-48">
         <Switch>
           <Route path="/headlines/:country">
             <NewsHeadlinesFeed />
