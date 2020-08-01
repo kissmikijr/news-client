@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
-const COUNTRIES = ["hu", "gb", "ca", "us", "de"];
+const COUNTRIES = ["hu", "gb", "us"];
 
 export default function CountrySelector(props) {
   const history = useHistory();
