@@ -1,50 +1,46 @@
+import React from "react";
+import Router from "next/router";
 import Navbar from "../../components/Navbar";
 import Drawer from "../../components/Drawer";
+import NewsCard from "../../components/NewsCard";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 import styles from "./[country].module.css";
 
-export default function Country({ data }) {
+const countryNames = {
+  hu: "Hungary",
+  us: "the United States",
+  gb: "the United Kingdom",
+};
+
+export default function Country({ data, country }) {
+  const changeCountry = async (country) => {
+    document.documentElement.scrollTop = 0;
+    Router.push(`/headlines/${country}`);
+  };
   return (
     <div className={styles.wrapper}>
       <Navbar />
-      <div className="post-container mx-auto">
-        <div className="flex">
-          <Drawer />
-          <div>
-            {data.map((news, index) => (
-              <div className={styles.news_card_container} key={index}>
-                <div className="">
-                  <div className="">{news.source.name}</div>
-                  <div className={styles.title}>{news.title}</div>
-                </div>
-                <img
-                  className={styles.thumbnail}
-                  src={news.urlToImage}
-                  alt="yikes"
-                />
-                <div className="text-left mb-2">{news.description}</div>
-                <div className="text-left text-xs opacity-75">
-                  {news.publishedAt}
-                </div>
-              </div>
-            ))}
+      <div className="flex">
+        <div className="post-container mx-auto">
+          <Drawer onClick={changeCountry} />
+          <div className={styles.title}>
+            Top Neeews from {countryNames[country]}
+          </div>
+          <div className="flex">
+            <div>
+              {data ? (
+                data.map((news, index) => <NewsCard news={news} key={index} />)
+              ) : (
+                <>Waiting for headlines</>
+              )}
+            </div>
           </div>
         </div>
+        <ScrollToTopButton />
       </div>
     </div>
   );
 }
-const iFrameModalStyle = {
-  content: {
-    height: "100vh",
-    width: "95%",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
 
 export async function getServerSideProps({ params }) {
   const { country } = params;
@@ -52,5 +48,5 @@ export async function getServerSideProps({ params }) {
     `https://neeews.herokuapp.com/api/news/headlines?country=${country}`
   );
   const data = await res.json();
-  return { props: { data } };
+  return { props: { data, country } };
 }

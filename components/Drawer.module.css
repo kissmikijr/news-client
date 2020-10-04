@@ -5,4 +5,8 @@
   cursor: pointer;
 }
 .drawer {
+  position: fixed;
+  transform: translate(-100%, 0);
+  background-color: white;
+  padding-right: 1em;
 }

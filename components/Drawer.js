@@ -2,12 +2,11 @@ import React from "react";
 import CountrySelector from "./CountrySelector";
 import styles from "./Drawer.module.css";
 
-export default function Drawer() {
+export default function Drawer(props) {
   return (
     <div className={styles.drawer}>
       <MenuItem>Headlines</MenuItem>
-      <MenuItem>Everything</MenuItem>
-      <CountrySelector />
+      <CountrySelector onClick={props.onClick} />
     </div>
   );
 }

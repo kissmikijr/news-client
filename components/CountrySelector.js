@@ -1,15 +1,16 @@
 import React from "react";
-import "./CountrySelector.module.css";
+import styles from "./CountrySelector.module.css";
 
 const COUNTRIES = ["hu", "gb", "us"];
 
 export default function CountrySelector(props) {
   return (
-    <div className="country-selector">
-      {COUNTRIES.map((c) => (
+    <div className={styles.country_selector}>
+      {COUNTRIES.map((country) => (
         <span
-          key={c}
-          className={`flag-icon flag-icon-${c} cursor-pointer hover:shadow-outline`}
+          key={country}
+          onClick={() => props.onClick(country)}
+          className={styles.country_flag + ` flag-icon flag-icon-${country}`}
         ></span>
       ))}
     </div>
