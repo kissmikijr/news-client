@@ -1,9 +1,13 @@
 .country_selector {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 0.5rem;
   cursor: pointer;
 }
 .country_flag:hover {
   border: 2px solid gray;
+}
+.country_flag {
+  width: 1.58em;
+  border: 2px solid transparent;
 }
