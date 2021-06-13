@@ -45,7 +45,7 @@ export default function Country({ data, country }) {
 export async function getServerSideProps({ params }) {
   const { country } = params;
   const res = await fetch(
-    `https://neeews.herokuapp.com/api/news/headlines?country=${country}`
+    `https://neeews-api-gateway-7s15zqs4.nw.gateway.dev/api/news/headlines?country=${country}`
   );
   const data = await res.json();
   return { props: { data, country } };
